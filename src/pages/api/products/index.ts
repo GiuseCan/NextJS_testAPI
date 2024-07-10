@@ -7,7 +7,10 @@ type Data = {
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "Cẩn Cris" });
+  if (req.method !== "GET") {
+    return res.status(404).json({ name: "Method not allowed" });
+  }
+  res.status(200).json({ name: "Show list product" });
 }
